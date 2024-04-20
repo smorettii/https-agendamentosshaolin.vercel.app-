@@ -21,7 +21,7 @@ function formatar_qualquer_numero(numero) {
         numero = numero.substring(2);
     }
     if (numero.length === 11) {
-        
+
         //19 98361-11134
 
         return `${numero.substring(0, 2)} ${numero.substring(2, 7)}-${numero.substring(7, 11)}`
@@ -50,27 +50,73 @@ async function index() {
         document.querySelector("#titulo_site").textContent = `Agendamentos - Atuais`
     })
 
+    let filtro
+
     document.querySelector("#pessoas").addEventListener("click", async () => {
         agendamentoss = false
         document.querySelector("#titulo_site").textContent = `Agendamentos - Todos`
 
         const pessoas = JSON.parse((await ((await fetch(link + "pessoas")).json())).pessoas)
 
-        let inner = '<br><br><div>'
+       
+        function converterStringParaData(stringData) {
+            const partes = stringData.split('/');
+            return new Date(partes[2], partes[1] - 1, partes[0]);  
+        }
+
+        if (filtro == 1) {
+            pessoas.sort((a, b) => {
+                const dataA = converterStringParaData(a[2]);
+                const dataB = converterStringParaData(b[2]);
+                return dataA - dataB;
+            });
+        } else if (filtro == 2) {
+            pessoas.sort((a, b) => {
+                const dataA = converterStringParaData(a[2]);
+                const dataB = converterStringParaData(b[2]);
+                return dataB - dataA;
+            });
+        }
+
+
+        
+
+        let inner = '<br><br><div id="tabela_tlgd">' + `
+
+        <select name="Filtros" id="filtros" title="Filtros">
+        <option selected>Selecione um Filtro</option>
+        <option value"antigo_novo">Antigo >> Novo</option>
+        <option value="novo_antigo">Novo >> Antigo</option>
+        
+    </select>
+
+            </select>
+
+            <div id="topo_tabela">
+            <h1>Nome</h1>
+            <h1>Telefone</h1>
+            <h1 id="dtcontato">Data de contato</h1>
+                
+            </div>
+        
+        `
 
         for (v of pessoas) {
             inner = inner + `
             <div id="informacao">
-                <h1>Nome: ${v[1]}</h1>
-                <h2>Telefone: <strong onclick="window.open('https://wa.me/+${v[0].replace('@c.us', '')}','__blank')" style="color:rgb(130, 200, 0);font-size:15px;height:5px">${formatar_qualquer_numero(v[0].replace("@c.us", ""))}</strong></h2>
-                <h2>Entrou em contato em: ${v[2]}</h2>
+                <h1>${v[1]}</h1>
+                <h1><strong id="dinheiro" onclick="window.open('https://wa.me/+${v[0].replace('@c.us', '')}','__blank')" style="color:rgb(130, 200, 0)">${formatar_qualquer_numero(v[0].replace("@c.us", ""))}</strong></h1>
+                <h1>${v[2]}</h1>
             </div>
         `
         }
         inner = inner + `</div>`
 
         document.querySelector("#bottom").innerHTML = inner
-
+        document.querySelector("select").addEventListener("change", (e) => {
+            filtro = document.querySelector("select").selectedIndex
+            document.querySelector("#pessoas").click()
+        })
     })
 
     async function reiniciar() {
@@ -115,6 +161,7 @@ async function index() {
             buttonRemarcar.textContent = 'Remarcar';
 
 
+
             buttonRemarcar.addEventListener("click", () => {
                 if (confirm('Deseja remarcar?')) {
                     fetch(link + 'remarcar', {
@@ -149,6 +196,10 @@ async function index() {
             div.appendChild(divFlutuante);
 
             document.querySelector("#bottom").appendChild(div);
+
+            if (procurarpor == 'antigos') {
+                buttonRemarcar.style.display = 'none'
+            }
         }
     }
 
