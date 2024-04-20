@@ -34,23 +34,58 @@
     
 }
 
-#informacao {
-    background-color: white;
-    box-shadow: rgb(0, 0, 0, 0.3) 0px 1px 10px;
-    border-radius: 4px;
-    padding:10px;
-    margin-bottom:3px
+#tabela_tlgd {
+    border:1px solid black;
+    height:100vh
 }
 
-#informacao h1 {
+#topo_tabela {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom:1px solid black;
+}
+
+#topo_tabela h1{
+    border:1px solid black;
+    width:33.35%;
+    text-align: center;
+    height:30px
+}
+
+#informacao {
+    background-color: white;
+
+    width:90vw;
+
+    display:flex;
+    justify-content: space-between;
+}
+
+#informacao h1, #informacao h2 {
+    font-size: 25px;
+    width:33.35%;
+    padding:0 20px;
+    border:1px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+h1,
+h2,
+h3 {
     font-size: 20px;
 }
 
-#informacao h2 {
-    font-size: 18px;
+
+#top,
+#bottom {
+    padding: 10px 6%; 
 }
-
-
 
 #opcoes img {
     width:40px;
@@ -70,6 +105,16 @@
     box-shadow: rgb(0, 0, 0, 0.3) 0px 1px 10px;
     width:150px;
     transition:200ms
+}
+
+#filtros {
+    margin-left:5%;
+    width:90%;
+    height:40px;
+    background-color:rgb(245, 245, 245);
+    color:black;
+    font-size: 25px;
+    margin-bottom:5px
 }
 
 #desmarcar {
@@ -128,6 +173,9 @@
     #top {
         padding: 10px 2%
     }
+    #dtcontato {
+        font-size: 15px;
+    }
     #bottom {
         padding:0;
         display:flex;
@@ -137,6 +185,16 @@
     #opcoes img {
         width:40px;
         transform:translateY(35px)   
+    }
+    #informacao h1, #informacao h2 {
+        font-size: 12px;
+        width:33.35%;
+        padding:0 20px;
+        border:1px solid black;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 }
 
