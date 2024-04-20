@@ -205,11 +205,13 @@ async function index() {
 
     while (true) {
 
-        if (agendamentoss == true) {
-            if (last == null || JSON.parse((await ((await fetch(link + procurarpor)).json())).agendamentos).length !== last.length) {
-                reiniciar()
+        try {
+            if (agendamentoss == true) {
+                if (last == null || JSON.parse((await ((await fetch(link + procurarpor)).json())).agendamentos).length !== last.length) {
+                    reiniciar()
+                }
             }
-        }
+        } catch {}
 
 
         await new Promise(result => setTimeout(result, 1500))
