@@ -52,7 +52,7 @@
     text-align: center;
     height:30px
 }
-
+ 
 #informacao {
     background-color: white;
 
@@ -60,6 +60,17 @@
 
     display:flex;
     justify-content: space-between;
+    position:relative
+}
+
+#outrasopcoes {
+    position:absolute;
+    right:0;
+    top:10%
+}
+
+#outrasopcoes img {
+    width:25px;
 }
 
 #informacao h1, #informacao h2 {
@@ -90,6 +101,7 @@ h3 {
 #opcoes img {
     width:40px;
     cursor: pointer;
+    margin:0 5px
 }
 
 #top h1 {
@@ -175,6 +187,9 @@ h3 {
     }
     #dtcontato {
         font-size: 15px;
+    }
+    #data_contato_ {
+        transform:translateX(-50px)
     }
     #bottom {
         padding:0;
