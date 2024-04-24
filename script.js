@@ -179,14 +179,26 @@ async function index() {
 
             buttonDesmarcar.addEventListener("click", () => {
                 if (confirm('Deseja desmarcar?')) {
-                    fetch(link + 'desmarcar', {
-                        headers: { "Content-Type": "application/json" },
-                        method: "POST",
-                        body: JSON.stringify([
-                            v, senha
-                        ])
-
-                    })
+                    if (procurarpor == 'agendamentos') {
+                        fetch(link + 'desmarcar', {
+                            headers: { "Content-Type": "application/json" },
+                            method: "POST",
+                            body: JSON.stringify([
+                                v, senha
+                            ])
+    
+                        })
+                    } else if (procurarpor == 'antigos') {
+                        fetch(link + 'desmarcar2', {
+                            headers: { "Content-Type": "application/json" },
+                            method: "POST",
+                            body: JSON.stringify([
+                                v, senha
+                            ])
+    
+                        })
+                    }
+                    
                 }
             })
 
