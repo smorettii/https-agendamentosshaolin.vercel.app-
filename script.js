@@ -1,4 +1,4 @@
-let link = 'https://smoretti.squareweb.app/' //`http://localhost:80/` 
+let link =  'https://smoretti.squareweb.app/' //`http://localhost:80/`
 let senha
 if (localStorage.getItem('senha2024') !== null && localStorage.getItem('senha2024') !== 'null') {
     senha = localStorage.getItem('senha2024')
@@ -49,6 +49,21 @@ async function index() {
         agendamentoss = true
         document.querySelector("#titulo_site").textContent = `Agendamentos - Atuais`
     })
+
+    function pegar_itens_tempo(tabela, ms = null) {
+        if (ms === null) {
+            return tabela;
+        } else {
+            const agora = new Date();
+            const tempoAnterior = agora.getTime() - ms;
+            const dataAnterior = new Date(tempoAnterior);
+    
+            return tabela.filter(item => {
+                const dataItem = new Date(item[1]);
+                return dataItem < dataAnterior;
+            });
+        }
+    }
 
     let filtro
 
@@ -102,17 +117,61 @@ async function index() {
         `
 
         for (v of pessoas) {
+
+            const div = document.createElement("div")
+
+            div.id = "informacao"
+
+            div.innerHTML = 
             inner = inner + `
             <div id="informacao">
                 <h1>${v[1]}</h1>
                 <h1><strong id="dinheiro" onclick="window.open('https://wa.me/+${v[0].replace('@c.us', '')}','__blank')" style="color:rgb(130, 200, 0)">${formatar_qualquer_numero(v[0].replace("@c.us", ""))}</strong></h1>
-                <h1>${v[2]}</h1>
+                <h1 id="data_contato_">${v[2]}</h1>
+
+                <div id="outrasopcoes">
+                    <img id="editar" src="./editar-texto.png" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">
+                    <img id="excluir" src="./excluir.png" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">
+                        
+                </div>
             </div>
         `
         }
         inner = inner + `</div>`
 
         document.querySelector("#bottom").innerHTML = inner
+
+        document.querySelectorAll("#editar, #excluir").forEach(async button => {
+            button.addEventListener("click", async () => {
+                const numero = button.getAttribute('alt')
+
+                if (button.src.includes("editar-texto")) {
+                    if (confirm('Deseja editar?')) {
+                        const novo = prompt("Novo nome:")
+                        if (novo !== null && novo !== '') {
+                            await fetch(link+'numero_editar', {
+                                headers:{"Content-Type":"application/json"},
+                                method:"POST",
+                                body:JSON.stringify({number: numero, senha:senha, novo_nome:novo})
+                            })
+                            document.querySelector("#pessoas").click()
+                        }
+                        
+                    }
+                } else {
+                    if (confirm('Deseja remover?')) {
+                        await fetch(link+'numero_excluir', {
+                            headers:{"Content-Type":"application/json"},
+                            method:"POST",
+                            body:JSON.stringify({number: numero, senha:senha})
+                        })
+                        document.querySelector("#pessoas").click()
+                    }
+                }
+
+            })
+        })
+
         document.querySelector("select").addEventListener("change", (e) => {
             filtro = document.querySelector("select").selectedIndex
             document.querySelector("#pessoas").click()
