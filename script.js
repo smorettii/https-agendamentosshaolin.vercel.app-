@@ -14,6 +14,23 @@ if (localStorage.getItem('senha2024') !== null && localStorage.getItem('senha202
         break
     }
 }
+
+function diminuir_nome(nome) {
+    var partes = nome.split(' ');
+
+    var numPartes = partes.length;
+    if (numPartes <= 2) {
+        return partes[0] + ' ' + partes[numPartes - 1];
+    } else {
+        var nomeAbreviado = partes[0] + ' ';
+        for (var i = 1; i < numPartes - 1; i++) {
+            nomeAbreviado += partes[i][0] + '. ';
+        }
+        nomeAbreviado += partes[numPartes - 1];
+        return nomeAbreviado;
+    }
+}
+
 function formatar_qualquer_numero(numero) {
     numero = numero.toString();
 
@@ -142,7 +159,7 @@ async function index() {
             div.innerHTML = 
             inner = inner + `
             <div id="informacao">
-                <h1>${v[1]}</h1>
+                <h1 id="nome_da_praga" alt="${v[1]}">${diminuir_nome(v[1])}</h1>
                 <h1><strong id="dinheiro" onclick="window.open('https://wa.me/+${v[0].replace('@c.us', '')}','__blank')" style="color:rgb(130, 200, 0)">${formatar_qualquer_numero(v[0].replace("@c.us", ""))}</strong></h1>
                 <h1 id="data_contato_">${v[2]}</h1>
 
@@ -157,6 +174,12 @@ async function index() {
         inner = inner + `</div>`
 
         document.querySelector("#bottom").innerHTML = inner
+
+        document.querySelectorAll("#nome_da_praga").forEach(button => {
+            button.addEventListener("click", () => {
+                alert(button.getAttribute('alt'))
+            })
+        })
 
         document.querySelectorAll("#editar, #excluir").forEach(async button => {
             button.addEventListener("click", async () => {
@@ -319,6 +342,8 @@ async function index() {
         await new Promise(result => setTimeout(result, 1500))
     }
 }
+
+
 
 index()
 
