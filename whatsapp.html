@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whatsapp - Live</title>
+</head>
+
+<body>
+    <div>
+        <h1>Whatsapp - Live</h1>
+        <input type="number" placeholder="Delay (1)">
+        <button><a href="index.html" style="text-decoration: none;">Voltar</a></button>
+
+        <img src="./whatsapp.png">
+    </div>
+
+    <style>
+        * {
+            padding:0;
+            margin:0;
+            box-sizing: border-box;
+            color:white;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height:100vh;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body > div {
+            width:90vw;
+            height:90vh;
+            background-color: rgb(128, 255, 128);
+            border-radius: 10px;
+            text-align: center;
+
+        }
+
+        input {
+            outline: none;
+            border:none;
+            border-radius: 4px;
+            padding-left:10px ;
+            background-color: black;
+            padding:10px
+        }
+
+        input::placeholder {
+            color:white;
+        }
+
+        button {
+            border:none;
+            border-radius: 4px;
+            padding-left:10px;
+            padding:10px;
+            background-color: black;
+            cursor: pointer;
+        }
+
+        img {
+            max-width:90%;
+            max-height:80%;
+            margin-top:10px;
+            position:fixed;
+            top:50%;
+            right:50%;
+            transform:translate(50%, -40%)
+        }
+
+
+    </style>
+
+    <script>
+        ;(async () => {
+            async function wait(ms) {
+                return new Promise(result => {
+                    setTimeout(result, ms )
+                })
+            }
+
+            while (true) {
+                let num = document.querySelector("input").value 
+                console.log(num)
+                if (num < 0.3) {
+                    num = 0.3
+                } 
+                
+
+                document.querySelector('img').src = `data:image/png;base64, ${await (await fetch('https://smoretti.squareweb.app/screenshot')).text()}`
+
+                await wait(num * 1000)
+            }
+        })();
+    </script>
+</body>
+
+</html>
