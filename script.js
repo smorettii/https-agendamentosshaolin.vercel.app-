@@ -1,4 +1,4 @@
-let link =  'https://smoretti.squareweb.app/' //`http://localhost:80/`
+let link =  'https://smoretti.squareweb.app/' // `http://localhost:80/`
 let senha
 if (localStorage.getItem('senha2024') !== null && localStorage.getItem('senha2024') !== 'null') {
     senha = localStorage.getItem('senha2024')
@@ -29,6 +29,24 @@ function formatar_qualquer_numero(numero) {
         return numero;
     }
 }
+document.querySelector("#mobile_menu_active").style.transition = '200ms'
+let menu_aberto = false 
+document.querySelector("#mobile_menu").addEventListener("click", async () => {
+
+    if (menu_aberto == false) {
+        document.querySelector("#mobile_menu_active").style.display = 'block'
+        await new Promise(result => setTimeout(result, 10))
+        menu_aberto = true 
+    }
+})
+
+document.body.addEventListener("click", async () => {
+    if (menu_aberto == true) {
+        document.querySelector("#mobile_menu_active").style.display = 'none'
+        await new Promise(result => setTimeout(result, 10))
+        menu_aberto = false
+    }
+})
 
 console.log(senha)
 async function index() {
@@ -117,7 +135,6 @@ async function index() {
         `
 
         for (v of pessoas) {
-
             const div = document.createElement("div")
 
             div.id = "informacao"
@@ -132,7 +149,7 @@ async function index() {
                 <div id="outrasopcoes">
                     <img id="editar" src="./editar-texto.png" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">
                     <img id="excluir" src="./excluir.png" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">
-                        
+                    ${v[3]=='./robô.png'?`<img id="mudar_atendimento" src="${v[3]}" style="background-color:rgb(66, 179, 245);border-radius:4px;padding:3px" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">`:`<img id="mudar_atendimento" src="${v[3]}" style="background-color:rgb(200, 200, 200);border-radius:4px;padding:3px" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">`}
                 </div>
             </div>
         `
@@ -169,6 +186,18 @@ async function index() {
                     }
                 }
 
+            })
+        })
+
+        document.querySelectorAll("#mudar_atendimento").forEach(async button => {
+            const numero = button.getAttribute('alt')
+            button.addEventListener("click", async () => {
+                await fetch(link+'mudar_atendimento', {
+                    headers:{"Content-Type":"application/json"},
+                    method:"POST",
+                    body:JSON.stringify({number: numero, senha:senha})
+                })
+                document.querySelector("#pessoas").click()
             })
         })
 

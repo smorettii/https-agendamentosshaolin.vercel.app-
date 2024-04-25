@@ -1,34 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Agendamentos</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
 
-    <body>
-        <div id="top">
-            <img src="./foto.png" class="fade-left">
-            <h1 class="fade-right" id="titulo_site">Agendamentos - Atuais</h1>
-            <div id="opcoes">
-                <img src="./agenda.png" id="agenda">
-                <img src="./historico.png" id="historico">
-                <img src="./pessoas.png" id="pessoas">
-                <a href="whatsapp.html"><img src="./whatsapp (1).png"></a>
-            </div>
+<body>
+    <div id="mobile_menu_active" class="fade-right" style="display:none">
+        <div id="mobile_top">
+            <h1>Opções</h1>
+            <span style="color:red" class="material-symbols-outlined">
+                close
+            </span>
         </div>
 
+
+        <div id="opcao_" onclick="document.querySelector('#agenda').click()">
+            <img src="./agenda.png">
+            <h1>Agenda</h1>
+        </div>
+        <div id="opcao_" onclick="document.querySelector('#historico').click()">
+            <img src="./historico.png">
+            <h1>Histórico</h1>
+        </div>
+        <div id="opcao_" onclick="document.querySelector('#pessoas').click()">
+            <img src="./pessoas.png">
+            <h1>Números</h1>
+        </div>
+        <a href="whatsapp.html" style="text-decoration: none;">
+            <div id="opcao_">
+            
+                <img src="./whatsapp (1).png">
+                <h1>Whatsapp Live</h1>
+            </div>
+        </a>
         
 
-        <div id="bottom">
-            <br><br>
 
-            
+
+    </div>
+
+    <div id="top">
+        <img src="./foto.png" class="fade-left">
+        <h1 class="fade-right" id="titulo_site">Agendamentos - Atuais</h1>
+        <div id="opcoes">
+            <img src="./agenda.png" id="agenda">
+            <img src="./historico.png" id="historico">
+            <img src="./pessoas.png" id="pessoas">
+            <a href="whatsapp.html"><img src="./whatsapp (1).png"></a>
+            <span class="material-symbols-outlined" id="mobile_menu">
+                menu
+
+            </span>
         </div>
-    </body>
+    </div>
 
-    <script src="./script.js"></script>
+
+
+
+
+    <div id="bottom">
+        <br><br>
+
+
+    </div>
+</body>
+
+<script src="./script.js"></script>
 
 </html>
