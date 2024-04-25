@@ -191,7 +191,9 @@ async function index() {
 
         document.querySelectorAll("#mudar_atendimento").forEach(async button => {
             const numero = button.getAttribute('alt')
+            button.style.transition = '1s'
             button.addEventListener("click", async () => {
+                button.src = 'https://portal.ufvjm.edu.br/a-universidade/cursos/grade_curricular_ckan/loading.gif/@@images/image.gif'
                 await fetch(link+'mudar_atendimento', {
                     headers:{"Content-Type":"application/json"},
                     method:"POST",
