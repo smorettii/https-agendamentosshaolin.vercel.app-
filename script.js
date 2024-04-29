@@ -214,7 +214,7 @@ async function index() {
         })
 
         const tempos = {
-            "1 Dia": 1000 * 60 * 60 * 29,
+            "1 Dia": 1000 * 60 * 60 * 24 * 2,
             "1 Semana": 1000 * 60 * 60 * 24 * 7,
             "2 Semanas": 1000 * 60 * 60 * 24 * 14,
             "3 Semanas": 1000 * 60 * 60 * 24 * 21,
