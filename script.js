@@ -1,4 +1,4 @@
-let link =  'https://smoretti.squareweb.app/' // `http://localhost:80/`
+let link = 'https://smoretti.squareweb.app/' // `http://localhost:80/`
 let senha
 if (localStorage.getItem('senha2024') !== null && localStorage.getItem('senha2024') !== 'null') {
     senha = localStorage.getItem('senha2024')
@@ -47,13 +47,13 @@ function formatar_qualquer_numero(numero) {
     }
 }
 document.querySelector("#mobile_menu_active").style.transition = '200ms'
-let menu_aberto = false 
+let menu_aberto = false
 document.querySelector("#mobile_menu").addEventListener("click", async () => {
 
     if (menu_aberto == false) {
         document.querySelector("#mobile_menu_active").style.display = 'block'
         await new Promise(result => setTimeout(result, 10))
-        menu_aberto = true 
+        menu_aberto = true
     }
 })
 
@@ -90,12 +90,19 @@ async function index() {
             return tabela;
         } else {
             const agora = new Date();
+            console.log(agora.getTime())
             const tempoAnterior = agora.getTime() - ms;
+            console.log(tempoAnterior)
             const dataAnterior = new Date(tempoAnterior);
-    
+
             return tabela.filter(item => {
-                const dataItem = new Date(item[1]);
-                return dataItem < dataAnterior;
+                const a = `${item[2].split("/")[1]}/${item[2].split("/")[0]}/${item[2].split("/")[2]}`
+                
+                console.log(a)
+                
+                const dataItem = new Date(a);
+ 
+                return dataItem > dataAnterior;
             });
         }
     }
@@ -108,10 +115,10 @@ async function index() {
 
         const pessoas = JSON.parse((await ((await fetch(link + "pessoas")).json())).pessoas)
 
-       
+
         function converterStringParaData(stringData) {
             const partes = stringData.split('/');
-            return new Date(partes[2], partes[1] - 1, partes[0]);  
+            return new Date(partes[2], partes[1] - 1, partes[0]);
         }
 
         if (filtro == 1) {
@@ -129,9 +136,33 @@ async function index() {
         }
 
 
+        console.log(pessoas)
+
+
+        let inner = `<br><br>
         
 
-        let inner = '<br><br><div id="tabela_tlgd">' + `
+
+        <div id="outrainformacao">
+                <div id="informacao_botoes">
+                    <button id="escolher_data">1 Dia</button>
+                    <button id="escolher_data">1 Semana</button>
+                    <button id="escolher_data">2 Semanas</button>
+                    <button id="escolher_data">3 Semanas</button>
+                    <button id="escolher_data">1 Mês</button>
+                    <button id="escolher_data">6 Meses</button>
+                    <button id="escolher_data">1 Ano</button>
+                    <button id="escolher_data">Todos</button>
+                    
+                </div>
+
+                <div id="informacao_pessoas" class="total_conversas">
+                    <h1>Total de Conversas</h1>
+                    <h1>N/A</h1>
+                </div>
+            </div>
+        
+        <div id="tabela_tlgd">` + `
 
         <select name="Filtros" id="filtros" title="Filtros">
         <option selected>Selecione um Filtro</option>
@@ -139,8 +170,6 @@ async function index() {
         <option value="novo_antigo">Novo >> Antigo</option>
         
     </select>
-
-            </select>
 
             <div id="topo_tabela">
             <h1>Nome</h1>
@@ -156,17 +185,20 @@ async function index() {
 
             div.id = "informacao"
 
-            div.innerHTML = 
-            inner = inner + `
+            div.innerHTML =
+                inner = inner + `
+
+            
+
             <div id="informacao">
-                <h1 id="nome_da_praga" alt="${v[1]}">${diminuir_nome(v[1])}</h1>
+                <h1  id="nome_da_praga" alt="${v[1]}">${diminuir_nome(v[1])}</h1>
                 <h1><strong id="dinheiro" onclick="window.open('https://wa.me/+${v[0].replace('@c.us', '')}','__blank')" style="color:rgb(130, 200, 0)">${formatar_qualquer_numero(v[0].replace("@c.us", ""))}</strong></h1>
                 <h1 id="data_contato_">${v[2]}</h1>
 
                 <div id="outrasopcoes">
                     <img id="editar" src="./editar-texto.png" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">
                     <img id="excluir" src="./excluir.png" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">
-                    ${v[3]=='./robô.png'?`<img id="mudar_atendimento" src="${v[3]}" style="background-color:rgb(66, 179, 245);border-radius:4px;padding:3px" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">`:`<img id="mudar_atendimento" src="${v[3]}" style="background-color:rgb(200, 200, 200);border-radius:4px;padding:3px" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">`}
+                    ${v[3] == './robô.png' ? `<img id="mudar_atendimento" src="${v[3]}" style="background-color:rgb(66, 179, 245);border-radius:4px;padding:3px" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">` : `<img id="mudar_atendimento" src="${v[3]}" style="background-color:rgb(200, 200, 200);border-radius:4px;padding:3px" alt="${formatar_qualquer_numero(v[0].replace("@c.us", ""))}">`}
                 </div>
             </div>
         `
@@ -181,6 +213,31 @@ async function index() {
             })
         })
 
+        const tempos = {
+            "1 Dia": 1000 * 60 * 60 * 29,
+            "1 Semana": 1000 * 60 * 60 * 24 * 7,
+            "2 Semanas": 1000 * 60 * 60 * 24 * 14,
+            "3 Semanas": 1000 * 60 * 60 * 24 * 21,
+            "1 Mês": 1000 * 60 * 60 * 24 * 31,
+            "6 Meses": (1000 * 60 * 60 * 24 * 31) * 6,
+            "1 Ano": (1000 * 60 * 60 * 24 * 31) * 12,
+            "Todos": null,
+
+
+        }
+
+        document.querySelectorAll('#escolher_data').forEach(button => {
+            const tempo = button.textContent
+
+            button.addEventListener("click", () => {
+                const selecionado = tempos[tempo]
+
+                const teste = pegar_itens_tempo(pessoas, selecionado)
+                console.log(teste)
+                document.querySelector(".total_conversas").querySelectorAll("h1")[1].textContent = teste.length
+            })
+        })
+
         document.querySelectorAll("#editar, #excluir").forEach(async button => {
             button.addEventListener("click", async () => {
                 const numero = button.getAttribute('alt')
@@ -189,21 +246,21 @@ async function index() {
                     if (confirm('Deseja editar?')) {
                         const novo = prompt("Novo nome:")
                         if (novo !== null && novo !== '') {
-                            await fetch(link+'numero_editar', {
-                                headers:{"Content-Type":"application/json"},
-                                method:"POST",
-                                body:JSON.stringify({number: numero, senha:senha, novo_nome:novo})
+                            await fetch(link + 'numero_editar', {
+                                headers: { "Content-Type": "application/json" },
+                                method: "POST",
+                                body: JSON.stringify({ number: numero, senha: senha, novo_nome: novo })
                             })
                             document.querySelector("#pessoas").click()
                         }
-                        
+
                     }
                 } else {
                     if (confirm('Deseja remover?')) {
-                        await fetch(link+'numero_excluir', {
-                            headers:{"Content-Type":"application/json"},
-                            method:"POST",
-                            body:JSON.stringify({number: numero, senha:senha})
+                        await fetch(link + 'numero_excluir', {
+                            headers: { "Content-Type": "application/json" },
+                            method: "POST",
+                            body: JSON.stringify({ number: numero, senha: senha })
                         })
                         document.querySelector("#pessoas").click()
                     }
@@ -217,10 +274,10 @@ async function index() {
             button.style.transition = '1s'
             button.addEventListener("click", async () => {
                 button.src = 'https://portal.ufvjm.edu.br/a-universidade/cursos/grade_curricular_ckan/loading.gif/@@images/image.gif'
-                await fetch(link+'mudar_atendimento', {
-                    headers:{"Content-Type":"application/json"},
-                    method:"POST",
-                    body:JSON.stringify({number: numero, senha:senha})
+                await fetch(link + 'mudar_atendimento', {
+                    headers: { "Content-Type": "application/json" },
+                    method: "POST",
+                    body: JSON.stringify({ number: numero, senha: senha })
                 })
                 document.querySelector("#pessoas").click()
             })
@@ -299,7 +356,7 @@ async function index() {
                             body: JSON.stringify([
                                 v, senha
                             ])
-    
+
                         })
                     } else if (procurarpor == 'antigos') {
                         fetch(link + 'desmarcar2', {
@@ -308,10 +365,10 @@ async function index() {
                             body: JSON.stringify([
                                 v, senha
                             ])
-    
+
                         })
                     }
-                    
+
                 }
             })
 
@@ -336,7 +393,7 @@ async function index() {
                     reiniciar()
                 }
             }
-        } catch {}
+        } catch { }
 
 
         await new Promise(result => setTimeout(result, 1500))

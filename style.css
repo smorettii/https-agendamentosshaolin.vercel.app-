@@ -1,85 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 * {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
     font-family: "PT Sans", sans-serif;
 }
 
 #top {
-    padding:10px 10%;
-    display:flex;
+    padding: 10px 10%;
+    display: flex;
     align-items: center;
     background-color: rgb(245, 245, 245);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 10px;
 }
 
 #bottom {
-    padding:10px 6%;
-    display:flex;
-    flex-wrap:wrap
+    padding: 10px 6%;
+    display: flex;
+    flex-wrap: wrap
 }
 
 
 #top img {
-    width:100px;
+    width: 100px;
     border-radius: 5px;
-    position:relative 
+    position: relative
 }
 
 #opcoes {
-    position:absolute;
-    right:0;
-    margin-right:10px;
-    
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+
 }
 
 #tabela_tlgd {
-    border:1px solid black;
-    height:100vh
+    border: 1px solid black;
+    height: 100vh
 }
 
 #topo_tabela {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom:1px solid black;
+    border-bottom: 1px solid black;
 }
 
-#topo_tabela h1{
-    border:1px solid black;
-    width:33.35%;
+#topo_tabela h1 {
+    border: 1px solid black;
+    width: 33.35%;
     text-align: center;
-    height:30px
+    height: 30px
 }
- 
+
 #informacao {
     background-color: white;
 
-    width:90vw;
+    width: 90vw;
 
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    position:relative
+    position: relative
 }
 
 #outrasopcoes {
-    position:absolute;
-    margin-right:3px;
-    right:0;
-    top:10%
+    position: absolute;
+    margin-right: 3px;
+    right: 0;
+    top: 10%
 }
 
 #outrasopcoes img {
-    width:25px;
+    width: 25px;
 }
 
-#informacao h1, #informacao h2 {
+#informacao h1,
+#informacao h2 {
     font-size: 25px;
-    width:33.35%;
-    padding:0 20px;
-    border:1px solid black;
-    display:flex;
+    width: 33.35%;
+    padding: 0 20px;
+    border: 1px solid black;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -96,77 +98,79 @@ h3 {
 
 #top,
 #bottom {
-    padding: 10px 6%; 
+    padding: 10px 6%;
 }
 
 #opcoes img {
-    width:40px;
+    width: 40px;
     cursor: pointer;
-    margin:0 5px
+    margin: 0 5px
 }
 
 #top h1 {
     font-size: 30px;
-    padding-left:20px;
-    color:rgb(0, 0, 0);
+    padding-left: 20px;
+    color: rgb(0, 0, 0);
     text-shadow: rgba(255, 255, 255, 0.74) 5px 5px 10px;
 }
 
-#desmarcar, #remarcar {
-    border:none;
+#desmarcar,
+#remarcar {
+    border: none;
     border-radius: 4px;
     box-shadow: rgb(0, 0, 0, 0.3) 0px 1px 10px;
-    width:150px;
-    transition:200ms
+    width: 150px;
+    transition: 200ms
 }
 
 #filtros {
-    margin-left:5%;
-    width:90%;
-    height:40px;
-    background-color:rgb(245, 245, 245);
-    color:black;
+    margin-left: 5%;
+    width: 90%;
+    height: 40px;
+    background-color: rgb(245, 245, 245);
+    color: black;
     font-size: 25px;
-    margin-bottom:5px
+    margin-bottom: 5px
 }
 
 #desmarcar {
     background-color: rgb(252, 40, 40);
-    color:white;
+    color: white;
 }
 
 #remarcar {
     background-color: rgb(248, 245, 54);
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
 
-#desmarcar:hover, #remarcar:hover {
-    transform:scale(1.1)
+#desmarcar:hover,
+#remarcar:hover {
+    transform: scale(1.1)
 }
 
 #template {
-    width:300px;
-    padding-bottom:50px;
+    width: 300px;
+    padding-bottom: 50px;
     background-color: rgb(252, 252, 252);
     border-radius: 4px;
     box-shadow: rgb(0, 0, 0, 0.3) 0px 1px 10px;
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    position:relative;
-    margin:5px
+    position: relative;
+    margin: 5px
 }
 
 #flutuante {
-    position:absolute;
-    bottom:10px;
-    display:flex;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
     flex-direction: column;
 }
 
 #flutuante * {
-    margin:1px
+    margin: 1px
 }
 
 #nome {
@@ -182,101 +186,164 @@ h3 {
 }
 
 #mobile_menu {
-    display:none
+    display: none
 }
+
+#informacao_botoes button {
+    color: rgb(255, 255, 255);
+    background-color: rgb(100, 240, 100);
+    padding:0 10px;
+    height:40px;
+    border-radius: 10px;
+    margin:3px
+}
+
+#informacao_pessoas {
+    background-color: rgb(100, 240, 100);
+    padding:10px;
+    margin:3px;
+    display:inline-block;
+    border-radius: 10px;
+    animation: subir_descer 1s infinite linear;
+    color:white;
+}
+
+@keyframes subir_descer {
+    0% {
+        transform:translateY(0px)
+    }
+
+    25% {
+        transform:translateY(-5px) scale(1.03);
+
+    }
+
+    50% {
+        transform:translateY(-5px) scale(1.03)
+    }
+
+    
+
+    100% {
+        transform:translateY(0px)
+    }
+
+    
+}
+
 
 @media (max-width:768px) {
     #top {
         padding: 10px 2%
     }
+
     #dtcontato {
         font-size: 15px;
     }
 
+    #tabela_tlgd {
+        transform: translateX(-18px)
+    }
+
     #bottom {
-        padding:0;
-        display:flex;
+        padding: 0;
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
 
     #outrasopcoes img {
-        width:20px;
+        width: 20px;
     }
 
-    #opcoes img {
-        width:40px;
-        transform:translateY(35px)   
+    #outrasopcoes {
+        position: absolute;
+        right: -35px;
+        z-index: 5
     }
-    #informacao h1, #informacao h2 {
+
+    #informacao_botoes {
+        padding: 10px
+    }
+
+
+
+    #opcoes img {
+        width: 40px;
+        transform: translateY(35px)
+    }
+
+    #informacao h1,
+    #informacao h2 {
         font-size: 12px;
-        width:33.35%;
-        padding:0 20px;
-        border:1px solid black;
-        display:flex;
+        width: 33.35%;
+        padding: 0 20px;
+        border: 1px solid black;
+        display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
     }
 
     #opcoes img {
-        display:none  
+        display: none
     }
 
     #mobile_menu {
-        display:block;;
-        transform:scale(1.3);
-        position:relative
+        display: block;
+        ;
+        transform: scale(1.3);
+        position: relative
     }
 
     #mobile_menu_active {
-        width:100vw;
+        width: 100vw;
     }
 }
 
 #mobile_menu_active {
-    position:fixed;
-    width:70vw;
-    height:100vh;
+    position: fixed;
+    width: 70vw;
+    height: 100vh;
     background-color: rgb(228, 228, 228);
-    z-index:10;
-    right:0;
+    z-index: 10;
+    right: 0;
     text-align: center;
 }
 
 #mobile_menu_active img {
-    width:30px;
+    width: 30px;
 }
 
 #mobile_menu_active #opcao_ {
-    display:flex;
-    margin:0 10px
+    display: flex;
+    margin: 0 10px
 }
 
-#mobile_menu_active  #opcao_ > h1  {
-    margin-left:10px
+#mobile_menu_active #opcao_>h1 {
+    margin-left: 10px
 }
 
 #mobile_menu_active::after {
-    content:'';
-    position:absolute;
-    width:100vw;
-    height:100%;
+    content: '';
+    position: absolute;
+    width: 100vw;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.89);
-    inset:0;
-    left:-100vw
+    inset: 0;
+    left: -100vw
 }
 
 #mobile_top {
-    display:flex;
+    display: flex;
     justify-content: space-between;
-    padding:0 10%;
-    margin-top:25px;
+    padding: 0 10%;
+    margin-top: 25px;
 
 }
 
-#mobile_menu_active h1{
-    color:black;
+#mobile_menu_active h1 {
+    color: black;
 }
 
 @keyframes fade-left {
