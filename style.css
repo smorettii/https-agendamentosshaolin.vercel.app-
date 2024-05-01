@@ -37,7 +37,8 @@
 
 #tabela_tlgd {
     border: 1px solid black;
-    height: 100vh
+    height: 100vh;
+    transform:translateX(-50px)
 }
 
 #topo_tabela {
@@ -57,18 +58,24 @@
 #informacao {
     background-color: white;
 
-    width: 90vw;
+    width: 80vw;
 
     display: flex;
     justify-content: space-between;
-    position: relative
+    position: relative;
+}
+
+#informacao h1 {
+    width:20vw;
+    text-wrap:nowrap
 }
 
 #outrasopcoes {
-    position: absolute;
-    margin-right: 3px;
-    right: 0;
-    top: 10%
+    display:flex;
+    position:absolute;
+    right:0;
+    top:5px;
+    transform:translateX(100%)
 }
 
 #outrasopcoes img {
@@ -189,6 +196,8 @@ h3 {
     display: none
 }
 
+
+
 #informacao_botoes button {
     color: rgb(255, 255, 255);
     background-color: rgb(100, 240, 100);
@@ -204,7 +213,7 @@ h3 {
     margin:3px;
     display:inline-block;
     border-radius: 10px;
-    animation: subir_descer 1s infinite linear;
+    animation: subir_descer 1s infinite ease-out;
     color:white;
 }
 
@@ -214,12 +223,12 @@ h3 {
     }
 
     25% {
-        transform:translateY(-5px) scale(1.03);
+        transform:translateY(-3px) scale(1.02);
 
     }
 
     50% {
-        transform:translateY(-5px) scale(1.03)
+        transform:translateY(-3px) scale(1.02)
     }
 
     
@@ -236,6 +245,16 @@ h3 {
     #top {
         padding: 10px 2%
     }
+
+    #outrasopcoes {
+        top:0;
+        height:15px
+    }
+
+    #informacao {
+        margin-bottom:5px
+    }
+
 
     #dtcontato {
         font-size: 15px;
@@ -256,11 +275,6 @@ h3 {
         width: 20px;
     }
 
-    #outrasopcoes {
-        position: absolute;
-        right: -35px;
-        z-index: 5
-    }
 
     #informacao_botoes {
         padding: 10px
