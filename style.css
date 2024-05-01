@@ -37,8 +37,7 @@
 
 #tabela_tlgd {
     border: 1px solid black;
-    height: 100vh;
-    transform:translateX(-50px)
+    height: 100vh
 }
 
 #topo_tabela {
@@ -58,24 +57,19 @@
 #informacao {
     background-color: white;
 
-    width: 80vw;
+    width: 90vw;
 
     display: flex;
     justify-content: space-between;
-    position: relative;
-}
-
-#informacao h1 {
-    width:20vw;
-    text-wrap:nowrap
+    position: relative
 }
 
 #outrasopcoes {
-    display:flex;
-    position:absolute;
-    right:0;
-    top:5px;
-    transform:translateX(100%)
+    position: absolute;
+    margin-right: 3px;
+    right: -5px;
+    transform:translateX(100%);
+    top: 10%
 }
 
 #outrasopcoes img {
@@ -196,8 +190,6 @@ h3 {
     display: none
 }
 
-
-
 #informacao_botoes button {
     color: rgb(255, 255, 255);
     background-color: rgb(100, 240, 100);
@@ -246,16 +238,6 @@ h3 {
         padding: 10px 2%
     }
 
-    #outrasopcoes {
-        top:0;
-        height:15px
-    }
-
-    #informacao {
-        margin-bottom:5px
-    }
-
-
     #dtcontato {
         font-size: 15px;
     }
@@ -275,6 +257,11 @@ h3 {
         width: 20px;
     }
 
+    #outrasopcoes {
+        position: absolute;
+        right: -35px;
+        z-index: 5
+    }
 
     #informacao_botoes {
         padding: 10px
