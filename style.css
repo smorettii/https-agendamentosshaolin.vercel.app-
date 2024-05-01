@@ -66,7 +66,7 @@
 
 #outrasopcoes {
     position: absolute;
-    margin-right: 15px;
+    margin-right: 3px;
     right: -5px;
     transform:translateX(100%);
     top: 10%
@@ -74,6 +74,7 @@
 
 #outrasopcoes img {
     width: 25px;
+    margin-right: 10px;
 }
 
 #informacao h1,
